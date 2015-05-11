@@ -1,0 +1,37 @@
+{
+  "name": "sc-app-cookiepolicy",
+  "version": "0.0.1",
+  "description": "Cookie policy notification for SC-app based apps.",
+  "author": "Matt Chapman <mattc@cogapp.com>",
+  "contributors": [
+    {
+      "name": "Matt Hollings",
+      "email": "matth@cogapp.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Southbank-Centre/SC-app-cookiepolicy"
+  },
+  "bugs": "https://github.com/Southbank-Centre/SC-app-cookiepolicy/issues",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "karma start --single-run"
+  },
+  "keywords": [
+    "cookiepolicy",
+    "cookie"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "jasmine-core": "^2.3.2",
+    "karma": "^0.12.31",
+    "karma-jasmine": "^0.3.5",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "karma-ng-html2js-preprocessor": "*"
+  }
+}

@@ -1,1 +1,1 @@
-# SC-app-googletagmanager
+# SC-app-cookiepolicy
