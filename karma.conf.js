@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'sinon'],
 
     // See http://daginge.com/technology/2013/12/14/testing-angular-templates-with-jasmine-and-karma/
     // preprocess matching files before serving them to the browser
