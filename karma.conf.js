@@ -12,33 +12,31 @@ module.exports = function(config) {
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['jasmine'],
 
+    // See http://daginge.com/technology/2013/12/14/testing-angular-templates-with-jasmine-and-karma/
+    // preprocess matching files before serving them to the browser
+    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+    preprocessors: {
+      '**/*.html': ['ng-html2js']
+    },
 
     // list of files / patterns to load in the browser
     files: [
       'bower_components/angular/angular.min.js',
       'bower_components/angular-cookies/angular-cookies.min.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'src/directives/*.js',
-      'test/directives/*.js'
+      'src/*.js',
+      'test/*.js',
+      'src/**/*.html'
     ],
 
+    ngHtml2JsPreprocessor: {
+      stripPrefix: 'src/',
+      moduleName: 'sc.app.cookiepolicy.templates'
+    },
 
     // list of files to exclude
     exclude: [
     ],
-
-    // See http://daginge.com/technology/2013/12/14/testing-angular-templates-with-jasmine-and-karma/
-    
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-      'src/directives/templates/**/*.html': ['ng-html2js']
-    },
-
-    ngHtml2JsPreprocessor: {
-      moduleName: 'templates'
-    },
-
 
     // test results reporter to use
     // possible values: 'dots', 'progress'
