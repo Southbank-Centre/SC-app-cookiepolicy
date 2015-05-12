@@ -26,7 +26,7 @@ describe('Directive: cookiepolicy', function () {
     $cookieStore = _$cookieStore_;
 
     // Compile our directive and run the digest cycle to apply changes.
-    el = $compile('<div sc-cookie-policy></div>')($scope);
+    el = $compile('<div sc-cookie-policy irights-page="irightsTest" cookie-page="cookiePageTest"></div>')($scope);
     $scope.$digest();
   }));
 
@@ -36,8 +36,8 @@ describe('Directive: cookiepolicy', function () {
     $cookieStore.remove('scCookiePolicyAccepted');
 
     // Reset the scCookiePolicyAccepted property to its default value.
-    el.scope().scCookiePolicyAccepted = false;
-    el.scope().$digest();
+    el.isolateScope().scCookiePolicyAccepted = false;
+    el.isolateScope().$digest();
   }));
 
   ////////////////////
@@ -52,7 +52,7 @@ describe('Directive: cookiepolicy', function () {
 
   it('should be able to check if a confirmation cookie exists', inject(function($cookieStore){
     // cookiePolicyAccepted should be False by default, so we should check that first.
-    expect(el.scope().scCookiePolicyAccepted).toEqual(false);
+    expect(el.isolateScope().scCookiePolicyAccepted).toEqual(false);
 
     // Stub $cookieStore.get() and have it return true..
     var cookieStub = sinon.stub($cookieStore, 'get');
@@ -63,7 +63,7 @@ describe('Directive: cookiepolicy', function () {
       .returns(true);
 
     // Ensure that our cookie checking method on $scope returns true.
-    expect(el.scope().checkCookiePolicyAccepted()).toEqual(true);
+    expect(el.isolateScope().checkCookiePolicyAccepted()).toEqual(true);
 
     // Ensure that our cookie checking method calls $cookieStore.get() once.
     expect($cookieStore.get.calledOnce).toEqual(true);
@@ -74,7 +74,7 @@ describe('Directive: cookiepolicy', function () {
       .returns(false);
 
     // Ensure that our cookie checking method on $scope returns false.
-    expect(el.scope().checkCookiePolicyAccepted()).toEqual(false);
+    expect(el.isolateScope().checkCookiePolicyAccepted()).toEqual(false);
 
     // Stub $cookieStoretore.get() and have it return undefined
     cookieStub
@@ -82,14 +82,14 @@ describe('Directive: cookiepolicy', function () {
       .returns(undefined);
 
     // Ensure that our cookie checking method on $scope returns false.
-    expect(el.scope().checkCookiePolicyAccepted()).toEqual(false);
+    expect(el.isolateScope().checkCookiePolicyAccepted()).toEqual(false);
 
     // Stub $cookieStoretore.get() and have it return an empty object
     cookieStub
       .withArgs('scCookiePolicyAccepted')
       .returns({});
 
-    expect(el.scope().checkCookiePolicyAccepted()).toEqual(false);
+    expect(el.isolateScope().checkCookiePolicyAccepted()).toEqual(false);
 
     // Restore cookieStub to its original state.
     cookieStub.restore();
@@ -97,10 +97,10 @@ describe('Directive: cookiepolicy', function () {
 
   it('should be shown if the cookie policy has not been accepted', function () {
     // Set scCookiePolicyAccepted on $scope to be false.
-    el.scope().scCookiePolicyAccepted = false;
+    el.isolateScope().scCookiePolicyAccepted = false;
     // Run a digestion cycle to update the directive.
     // ToDo: Check if this should be done, or should we implement $watch?
-    el.scope().$digest();
+    el.isolateScope().$digest();
     // Check that ng-hide has kicked in appropriately.
     var hidden = el.children().eq(0).hasClass('ng-hide');
     expect(hidden).toBe(false);
@@ -108,10 +108,10 @@ describe('Directive: cookiepolicy', function () {
 
   it('should be hidden if the cookie policy has been accepted', function () {
     // Set scCookiePolicyAccepted on $scope to be false.
-    el.scope().scCookiePolicyAccepted = true;
+    el.isolateScope().scCookiePolicyAccepted = true;
     // Run a digestion cycle to update the directive.
     // ToDo: Check if this should be done, or should we implement $watch?
-    el.scope().$digest();
+    el.isolateScope().$digest();
     // Check that ng-hide has kicked in appropriately.
     var hidden = el.children().eq(0).hasClass('ng-hide');
     expect(hidden).toBe(true);
@@ -120,7 +120,7 @@ describe('Directive: cookiepolicy', function () {
   it('should set a cookie when the accept button is clicked', function () {
 
     // Spy on setPolicyCookie
-    sinon.spy(el.scope(), "setPolicyCookie");
+    sinon.spy(el.isolateScope(), "setPolicyCookie");
 
     var event = document.createEvent("MouseEvent");
     event.initMouseEvent("click", true, true);
@@ -129,18 +129,50 @@ describe('Directive: cookiepolicy', function () {
     var button = el.find('button');
     button[0].dispatchEvent(event);
 
-    expect(el.scope().setPolicyCookie.callCount).toEqual(1);
-    expect(el.scope().checkCookiePolicyAccepted()).toEqual(true);
-    expect(el.scope().scCookiePolicyAccepted).toEqual(true);
+    expect(el.isolateScope().setPolicyCookie.callCount).toEqual(1);
+    expect(el.isolateScope().checkCookiePolicyAccepted()).toEqual(true);
+    expect(el.isolateScope().scCookiePolicyAccepted).toEqual(true);
     expect($cookieStore.get('scCookiePolicyAccepted')).toBe(true);
 
     // Remove the spy from el.scope().setPolicyCookie().
-    el.scope().setPolicyCookie.restore();
+    el.isolateScope().setPolicyCookie.restore();
   });
 
-  //it('should change links based on configuration', function () {
-  //  // ToDo: Remove this once all test are written.
-  //  expect(false).toBeTruthy();
-  //});
+  it('should accept links as configuration on the directive', function(){
+    expect(el.isolateScope().iRightsPage).toEqual('irightsTest');
+    expect(el.isolateScope().cookiePage).toEqual('cookiePageTest');
+  });
+
+  it('should change links based on configuration', function () {
+    el.isolateScope().cookiePage = "Lannister";
+    el.isolateScope().iRightsPage = "Stark";
+    el.isolateScope().$digest();
+
+    expect(el.find('a')[0].getAttribute('ui-sref')).toEqual("Lannister");
+    expect(el.find('a')[1].getAttribute('ui-sref')).toEqual("Stark");
+
+    el.isolateScope().cookiePage = "Durrandon";
+    el.isolateScope().iRightsPage = "Arryn";
+    el.isolateScope().$digest();
+
+    expect(el.find('a')[0].getAttribute('ui-sref')).toEqual("Durrandon");
+    expect(el.find('a')[1].getAttribute('ui-sref')).toEqual("Arryn");
+
+    el.isolateScope().$digest()
+  });
+
+  it('should set the default value to true if the scCookiePolicyAccepted cookie exists', function(){
+    // Ensure that the cookie is not set.
+    expect(el.isolateScope().scCookiePolicyAccepted).toEqual(false);
+    // Set the cookie.
+    $cookieStore.put('scCookiePolicyAccepted', true);
+
+    // Compile a new element.
+    var newEl = $compile('<div sc-cookie-policy irights-page="irightsTest" cookie-page="cookiePageTest"></div>')($scope);
+    $scope.$digest();
+
+    // Ensure that the isolated scope value for scCookiePolicyAccepted is true.
+    expect(newEl.isolateScope().scCookiePolicyAccepted).toBe(true);
+  });
 
 });
