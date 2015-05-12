@@ -50,7 +50,7 @@ function scCookiePolicy($cookieStore) {
   return ddo;
 }
 
-angular.module('sc.app.cookiepolicy', []).run(['$templateCache', function($templateCache) {
+angular.module('sc.app.cookiepolicy').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('templates/directive.cookiepolicy.tpl.html',
