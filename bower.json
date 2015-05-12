@@ -5,11 +5,16 @@
     "Matt Chapman <mattc@cogapp.com>",
     "Matt Hollings <matth@cogapp.com>"
   ],
+  "main": [
+    "dist/directive.cookiepolicy.min.js",
+    "dist/templates/directive.cookiepolicy.tpl.html"
+  ],
   "keywords": [
     "cookiepolicy",
     "cookie"
   ],
   "license": "MIT",
+  "private": true,
   "ignore": [
     "**/.*",
     "node_modules",
