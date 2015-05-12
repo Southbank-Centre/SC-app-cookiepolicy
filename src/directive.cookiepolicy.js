@@ -35,8 +35,12 @@ function scCookiePolicy($cookieStore) {
 
       // For anything that is not true (i.e. undefined, {}, foobar) we return false.
       return false;
-    }
+    };
 
+    $scope.setPolicyCookie = function(){
+      $cookieStore.put('scCookiePolicyAccepted', true);
+      $scope.scCookiePolicyAccepted = true;
+    };
   }
 
   return ddo;

@@ -1,6 +1,11 @@
 <div id="cookie-policy" class="cookie-policy" ng-hide="scCookiePolicyAccepted">
   <div class="cookie-policy__text"></div>
   <div class="cookie-policy__buttons">
-    <button class="cookie-policy__buttons--button cookie-policy__buttons--confirm"></button>
+    <button
+            id="cookie-policy__confirm"
+            class="cookie-policy__buttons--button cookie-policy__buttons--confirm"
+            ng-click="setPolicyCookie()"
+            >
+    </button>
   </div>
 </div>

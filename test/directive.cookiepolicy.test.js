@@ -2,16 +2,21 @@
 
 describe('Directive: cookiepolicy', function () {
 
-  // load the directive's module
-  beforeEach(module('sc.app.cookiepolicy'));
-  beforeEach(module('ngCookies'));
-  // Load in the ng-preprocessor templates
-  beforeEach(module('sc.app.cookiepolicy.templates'));
+  ////////////////////
+  // SETUP/TEARDOWN
+  ////////////////////
 
   var $compile;
   var $scope;
   var $cookieStore;
   var el;
+
+  // Load the directive's module and dependencies.
+  beforeEach(module('sc.app.cookiepolicy'));
+  beforeEach(module('ngCookies'));
+
+  // Load in the ng-preprocessor templates
+  beforeEach(module('sc.app.cookiepolicy.templates'));
 
   // Inject dependencies to make them available to all tests.
   beforeEach(inject(function (_$rootScope_, _$compile_, _$cookieStore_) {
@@ -24,6 +29,20 @@ describe('Directive: cookiepolicy', function () {
     el = $compile('<div sc-cookie-policy></div>')($scope);
     $scope.$digest();
   }));
+
+  // Perform any teardown tasks.
+  afterEach(inject(function($cookieStore){
+    // Clear out the accepted cookie after each test just in case.
+    $cookieStore.remove('scCookiePolicyAccepted');
+
+    // Reset the scCookiePolicyAccepted property to its default value.
+    el.scope().scCookiePolicyAccepted = false;
+    el.scope().$digest();
+  }));
+
+  ////////////////////
+  // TESTS
+  ///////////////////
 
   it('should contain the cookie policy template', function () {
     //expect(element.html()).toContain('<div class="cookie-policy">');
@@ -99,13 +118,29 @@ describe('Directive: cookiepolicy', function () {
   });
 
   it('should set a cookie when the accept button is clicked', function () {
-    // ToDo: Remove this once all test are written.
-    expect(false).toBeTruthy();
+
+    // Spy on setPolicyCookie
+    sinon.spy(el.scope(), "setPolicyCookie");
+
+    var event = document.createEvent("MouseEvent");
+    event.initMouseEvent("click", true, true);
+
+    // There's only one button for now, but if this changes we may need to refactor this test.
+    var button = el.find('button');
+    button[0].dispatchEvent(event);
+
+    expect(el.scope().setPolicyCookie.callCount).toEqual(1);
+    expect(el.scope().checkCookiePolicyAccepted()).toEqual(true);
+    expect(el.scope().scCookiePolicyAccepted).toEqual(true);
+    expect($cookieStore.get('scCookiePolicyAccepted')).toBe(true);
+
+    // Remove the spy from el.scope().setPolicyCookie().
+    el.scope().setPolicyCookie.restore();
   });
 
-  it('should change links based on configuration', function () {
-    // ToDo: Remove this once all test are written.
-    expect(false).toBeTruthy();
-  });
+  //it('should change links based on configuration', function () {
+  //  // ToDo: Remove this once all test are written.
+  //  expect(false).toBeTruthy();
+  //});
 
 });
