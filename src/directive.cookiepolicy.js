@@ -24,7 +24,7 @@ function scCookiePolicy($cookieStore) {
     link: link
   };
 
-  function link($scope, $element, $attrs) {
+  function link($scope) {
 
     $scope.checkCookiePolicyAccepted = function(){
       var policyAccepted = $cookieStore.get('scCookiePolicyAccepted');

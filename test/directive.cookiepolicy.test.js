@@ -158,7 +158,7 @@ describe('Directive: cookiepolicy', function () {
     expect(el.find('a')[0].getAttribute('ui-sref')).toEqual("Durrandon");
     expect(el.find('a')[1].getAttribute('ui-sref')).toEqual("Arryn");
 
-    el.isolateScope().$digest()
+    el.isolateScope().$digest();
   });
 
   it('should set the default value to true if the scCookiePolicyAccepted cookie exists', function(){
