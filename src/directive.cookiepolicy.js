@@ -17,13 +17,14 @@ function scCookiePolicy($cookieStore) {
   var ddo = {
     restrict: 'A',
     templateUrl: 'templates/directive.cookiepolicy.tpl.html',
-    scope: true,
+    scope: {
+      iRightsPage: '@irightsPage',
+      cookiePage: '@cookiePage'
+    },
     link: link
   };
 
   function link($scope, $element, $attrs) {
-
-    $scope.scCookiePolicyAccepted = false;
 
     $scope.checkCookiePolicyAccepted = function(){
       var policyAccepted = $cookieStore.get('scCookiePolicyAccepted');
@@ -41,6 +42,9 @@ function scCookiePolicy($cookieStore) {
       $cookieStore.put('scCookiePolicyAccepted', true);
       $scope.scCookiePolicyAccepted = true;
     };
+
+    $scope.scCookiePolicyAccepted = $scope.checkCookiePolicyAccepted();
+
   }
 
   return ddo;
