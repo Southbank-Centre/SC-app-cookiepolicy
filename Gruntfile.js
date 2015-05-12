@@ -47,7 +47,6 @@ module.exports = function (grunt) {
         dest: 'release/SC-app-cookiepolicy.js',
         options: {
           module: 'sc.app.cookiepolicy',
-          standalone: true,
           url: function(url) {
             return url.replace('src/', '');
           },
