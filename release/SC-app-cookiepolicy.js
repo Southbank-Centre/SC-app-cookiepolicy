@@ -50,3 +50,11 @@ function scCookiePolicy($cookieStore) {
   return ddo;
 }
 
+angular.module('sc.app.cookiepolicy', []).run(['$templateCache', function($templateCache) {
+  'use strict';
+
+  $templateCache.put('templates/directive.cookiepolicy.tpl.html',
+    "<div id=cookie-policy class=cookie-policy ng-hide=scCookiePolicyAccepted><div class=cookie-policy__text>Our website uses small files called cookies to help us customise your experience. Full details of what these are can be found in our <a id=cookie-policy-link class=cookie-policy__test--link ui-sref=\"{{ cookiePage }}\">Cookies policy</a>.<br>We also support the <a id=irights-principles-link class=cookie-policy__test--link ui-sref=\"{{ iRightsPage }}\">iRights principles</a> which promote safer access to the internet for children and young people.</div><div class=cookie-policy__buttons><button id=cookie-policy__confirm class=\"cookie-policy__buttons--button cookie-policy__buttons--confirm\" ng-click=setPolicyCookie()></button></div></div>"
+  );
+
+}]);

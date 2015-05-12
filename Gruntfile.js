@@ -26,27 +26,6 @@ module.exports = function (grunt) {
       unit: {
         configFile: 'karma.conf.js',
         singleRun: true
-      },
-      dist: {
-        configFile: 'karma.conf.js',
-        singleRun: true,
-        files: [
-          {
-            src: [
-              'bower_components/angular/angular.min.js',
-              'bower_components/angular-cookies/angular-cookies.min.js',
-              'bower_components/angular-mocks/angular-mocks.js',
-              'release/*.js',
-              'test/*.js',
-              'release/**/*.html'
-            ]
-          }
-        ],
-        ngHtml2JsPreprocessor: {
-          stripPrefix: 'release/',
-          moduleName: 'sc.app.cookiepolicy.templates'
-        }
-
       }
     },
 
@@ -54,19 +33,48 @@ module.exports = function (grunt) {
       dist: {
         options: {
           sourceMap: true,
-          sourceMapName: 'release/directive.cookiepolicy.min.js.map'
+          sourceMapName: 'release/SC-app-cookiepolicy.min.js.map'
         },
         files: {
-          'release/directive.cookiepolicy.min.js': 'src/directive.cookiepolicy.js'
+          'release/SC-app-cookiepolicy.min.js': 'release/SC-app-cookiepolicy.js'
+        }
+      }
+    },
+
+    ngtemplates: {
+      app: {
+        src: 'src/templates/*.html',
+        dest: 'release/SC-app-cookiepolicy.js',
+        options: {
+          module: 'sc.app.cookiepolicy',
+          standalone: true,
+          url: function(url) {
+            return url.replace('src/', '');
+          },
+          htmlmin: {
+            collapseBooleanAttributes:      true,
+            collapseWhitespace:             true,
+            removeAttributeQuotes:          true,
+            removeComments:                 true, // Only if you don't use comment directives!
+            removeEmptyAttributes:          true,
+            removeRedundantAttributes:      true,
+            removeScriptTypeAttributes:     true,
+            removeStyleLinkTypeAttributes:  true
+          },
+          append: 'release/SC-app-cookiepolicy.js'
         }
       }
     },
 
     copy: {
       dist: {
-        src: './src/directive.cookiepolicy.js',
-        dest: './release/directive.cookiepolicy.js'
+        src: 'src/directive.cookiepolicy.js',
+        dest: 'release/SC-app-cookiepolicy.js'
       }
+    },
+
+    clean: {
+      dist: 'release'
     }
 
   });
@@ -75,10 +83,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'jshint',
     'karma:unit',
+    'clean:dist',
     'copy:dist',
-    'uglify',
-    'karma:dist'
-
+    'ngtemplates',
+    'uglify'
   ]);
 
   grunt.registerTask('test', [

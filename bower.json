@@ -5,10 +5,7 @@
     "Matt Chapman <mattc@cogapp.com>",
     "Matt Hollings <matth@cogapp.com>"
   ],
-  "main": [
-    "release/directive.cookiepolicy.min.js",
-    "release/templates/directive.cookiepolicy.tpl.html"
-  ],
+  "main": "release/SC-app-cookiepolicy.min.js",
   "keywords": [
     "cookiepolicy",
     "cookie"
