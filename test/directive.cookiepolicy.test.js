@@ -148,15 +148,15 @@ describe('Directive: cookiepolicy', function () {
     el.isolateScope().iRightsPage = "Stark";
     el.isolateScope().$digest();
 
-    expect(el.find('a')[0].getAttribute('ui-sref')).toEqual("Lannister");
-    expect(el.find('a')[1].getAttribute('ui-sref')).toEqual("Stark");
+    expect(el.find('a')[0].getAttribute('ng-href')).toEqual("Lannister");
+    expect(el.find('a')[1].getAttribute('ng-href')).toEqual("Stark");
 
     el.isolateScope().cookiePage = "Durrandon";
     el.isolateScope().iRightsPage = "Arryn";
     el.isolateScope().$digest();
 
-    expect(el.find('a')[0].getAttribute('ui-sref')).toEqual("Durrandon");
-    expect(el.find('a')[1].getAttribute('ui-sref')).toEqual("Arryn");
+    expect(el.find('a')[0].getAttribute('ng-href')).toEqual("Durrandon");
+    expect(el.find('a')[1].getAttribute('ng-href')).toEqual("Arryn");
 
     el.isolateScope().$digest();
   });
