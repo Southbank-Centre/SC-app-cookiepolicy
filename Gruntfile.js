@@ -20,6 +20,13 @@ module.exports = function (grunt) {
       src: {
         src: ['test/**/*.js']
       }
+    },
+
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      }
     }
   });
 
@@ -29,7 +36,8 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test', [
-
+    'jshint',
+    'karma'
   ]);
 
   grunt.registerTask('default', ['test']);
