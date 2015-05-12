@@ -36,14 +36,14 @@ module.exports = function (grunt) {
               'bower_components/angular/angular.min.js',
               'bower_components/angular-cookies/angular-cookies.min.js',
               'bower_components/angular-mocks/angular-mocks.js',
-              'dist/*.js',
+              'release/*.js',
               'test/*.js',
-              'dist/**/*.html'
+              'release/**/*.html'
             ]
           }
         ],
         ngHtml2JsPreprocessor: {
-          stripPrefix: 'dist/',
+          stripPrefix: 'release/',
           moduleName: 'sc.app.cookiepolicy.templates'
         }
 
@@ -54,22 +54,10 @@ module.exports = function (grunt) {
       dist: {
         options: {
           sourceMap: true,
-          sourceMapName: 'dist/directive.cookiepolicy.min.js.map'
+          sourceMapName: 'release/directive.cookiepolicy.min.js.map'
         },
         files: {
-          'dist/directive.cookiepolicy.min.js': 'src/directive.cookiepolicy.js'
-        }
-      }
-    },
-
-    htmlmin: {
-      dist: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true
-        },
-        files: {
-          'dist/templates/directive.cookiepolicy.tpl.html': 'src/templates/directive.cookiepolicy.tpl.html'
+          'release/directive.cookiepolicy.min.js': 'src/directive.cookiepolicy.js'
         }
       }
     },
@@ -77,7 +65,7 @@ module.exports = function (grunt) {
     copy: {
       dist: {
         src: './src/directive.cookiepolicy.js',
-        dest: './dist/directive.cookiepolicy.js'
+        dest: './release/directive.cookiepolicy.js'
       }
     }
 
@@ -89,7 +77,6 @@ module.exports = function (grunt) {
     'karma:unit',
     'copy:dist',
     'uglify',
-    'htmlmin',
     'karma:dist'
 
   ]);

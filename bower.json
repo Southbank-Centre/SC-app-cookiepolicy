@@ -1,13 +1,13 @@
 {
-  "name": "sc-app-cookiepolicy",
+  "name": "SC-app-cookiepolicy",
   "version": "0.0.1",
   "authors": [
     "Matt Chapman <mattc@cogapp.com>",
     "Matt Hollings <matth@cogapp.com>"
   ],
   "main": [
-    "dist/directive.cookiepolicy.min.js",
-    "dist/templates/directive.cookiepolicy.tpl.html"
+    "release/directive.cookiepolicy.min.js",
+    "release/templates/directive.cookiepolicy.tpl.html"
   ],
   "keywords": [
     "cookiepolicy",
