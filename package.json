@@ -1,6 +1,6 @@
 {
   "name": "sc-app-cookiepolicy",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Cookie policy notification for SC-app based apps.",
   "author": "Matt Chapman <mattc@cogapp.com>",
   "contributors": [
