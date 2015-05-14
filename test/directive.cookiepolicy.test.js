@@ -12,7 +12,7 @@ describe('Directive: cookiepolicy', function () {
   var el;
 
   // Load the directive's module and dependencies.
-  beforeEach(module('sc.app.cookiepolicy'));
+  beforeEach(module('SC-app-cookiepolicy'));
   beforeEach(module('ngCookies'));
 
   // Load in the ng-preprocessor templates
