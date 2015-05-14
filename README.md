@@ -45,4 +45,4 @@ All code should have unit test coverage, and be linted using the provided .`jshi
 
 Unit tests are written using a combination of [Karma](https://karma-runner.github.io/0.12/index.html), [Jasmine](https://jasmine.github.io/) and [PhantomJS](http://phantomjs.org/). As a result of this, you will require PhantomJS and the Karma CLI to be installed globally until the configuration is changed to allow for project specific packages.
 
-To get set up for unit testing, clone this repository and run `npm install`. This will install all component specific requirements. After than, run `grunt test` to test the component on an ad hoc basis, or run `karma start` to watch your files for any changes and test as you go.
+To get set up for unit testing, clone this repository and run `npm install` and `bower install`. This will install all component specific requirements. After than, run `grunt test` to test the component on an ad hoc basis, or run `karma start` to watch your files for any changes and test as you go.
