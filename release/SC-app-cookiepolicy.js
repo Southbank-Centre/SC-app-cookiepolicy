@@ -8,7 +8,7 @@
  * @example <div acme-shared-spinner></div>
  */
 angular
-  .module('sc.app.cookiepolicy', [])
+  .module('SC-app-cookiepolicy', [])
   .directive('scCookiePolicy', scCookiePolicy);
 
 scCookiePolicy.$inject = ['$cookieStore'];
@@ -50,7 +50,7 @@ function scCookiePolicy($cookieStore) {
   return ddo;
 }
 
-angular.module('sc.app.cookiepolicy').run(['$templateCache', function($templateCache) {
+angular.module('SC-app-cookiepolicy').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('templates/directive.cookiepolicy.tpl.html',
