@@ -1,0 +1,27 @@
+{
+  "name": "SC-app-cookiepolicy",
+  "version": "1.0.0",
+  "authors": [
+    "Matt Chapman <mattc@cogapp.com>",
+    "Matt Hollings <matth@cogapp.com>"
+  ],
+  "main": "release/SC-app-cookiepolicy.min.js",
+  "keywords": [
+    "cookiepolicy",
+    "cookie"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.0",
+    "angular-cookies": "~1.2.0",
+    "angular-mocks": "~1.2.0"
+  }
+}
