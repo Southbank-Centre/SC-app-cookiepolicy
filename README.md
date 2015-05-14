@@ -4,7 +4,7 @@
 
 1. Run the following command in your app's root directory `$ bower install --save Southbank-Centre/SC-app-cookiepolicy`
 
-2. Add `sc.app.cookiepolicy` to the dependency list in **[YourAppName].module.js**
+2. Add `SC-app-cookiepolicy` to the dependency list in **[YourAppName].module.js**
 
 ## Usage
 
