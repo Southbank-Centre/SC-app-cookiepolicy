@@ -1,6 +1,6 @@
 {
-  "name": "SC-app-cookiepolicy",
-  "version": "1.0.0",
+  "name": "sc-app-cookiepolicy",
+  "version": "1.1.0",
   "authors": [
     "Matt Chapman <mattc@cogapp.com>",
     "Matt Hollings <matth@cogapp.com>"
@@ -20,8 +20,8 @@
     "tests"
   ],
   "devDependencies": {
-    "angular": "~1.2.0",
-    "angular-cookies": "~1.2.0",
-    "angular-mocks": "~1.2.0"
+    "angular": "~1.4.2",
+    "angular-cookies": "~1.4.2",
+    "angular-mocks": "~1.4.2"
   }
 }
